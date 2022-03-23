@@ -61,7 +61,20 @@ const HomeScreen = () => {
   }
     
     const Delete =()=>{
-        
+        // MARK: Deleting Doc
+    const myDoc = doc(db, "MyCollection", "MyDocument")
+
+    deleteDoc(myDoc)
+      // Handling Promises
+      .then(() => {
+        // MARK: Success
+        alert("Deleted Successfully!")
+      })
+      .catch((error) => {
+        // MARK: Failure
+        alert(error.message)
+      })
+      
     }
 
     return(
@@ -79,8 +92,8 @@ const HomeScreen = () => {
         <Text style={{color:'white',fontSize:20}}>Name : {userDoc.Name}</Text>
       }
        <Input  placeholder="Type Here" mt={5} onPress justifyContent={'center'} w="100%" maxWidth="400px" />
-
        <Button size="sm"  mt={6}>Update</Button>
+       <Button title='Delete Doc' onPress={Delete}></Button>
             </NativeBaseProvider>
             <Text style={{marginLeft:100,marginBottom:10, color:'white', fontSize:20}}>Thank you..!!!</Text>
         </View>
